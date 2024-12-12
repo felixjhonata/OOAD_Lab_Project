@@ -36,7 +36,7 @@ public class UserController {
     }
 
     // Fungsi untuk mendaftarkan pengguna baru
-    public String registerUser(String username, String password, String phoneNumber, String address, String role) {
+    public String Register(String username, String password, String phoneNumber, String address, String role) {
         // Validasi input
         if (username.isEmpty() || username.length() < 3) return "Username tidak valid!";
         if (!isUsernameUnique(username)) return "Username sudah digunakan!";
@@ -70,7 +70,7 @@ public class UserController {
     }
 
     // Fungsi untuk login pengguna
-    public boolean loginUser(String username, String password) {
+    public boolean Login(String username, String password) {
         // Login untuk admin menggunakan kredensial khusus
         if (username.equals("admin") && password.equals("admin")) {
             return true; // Admin login berhasil

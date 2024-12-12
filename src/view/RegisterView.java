@@ -132,7 +132,7 @@ public class RegisterView extends Application implements EventHandler<ActionEven
             RadioButton selectedRole = (RadioButton) roleGroup.getSelectedToggle();
             String role = selectedRole == null ? "" : selectedRole.getText();
 
-            String result = uc.registerUser(username, password, phone, address, role);
+            String result = uc.Register(username, password, phone, address, role);
             if (result.equals("Registrasi berhasil!")) {
                 showSuccess("Information", result);
                 clearFields();
