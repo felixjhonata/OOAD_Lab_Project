@@ -37,14 +37,11 @@ public class UserController {
 
     // Fungsi untuk mendaftarkan pengguna baru
     public String Register(String username, String password, String phoneNumber, String address, String role) {
-        // Validasi input
-        if (username.isEmpty() || username.length() < 3) return "Username tidak valid!";
-        if (!isUsernameUnique(username)) return "Username sudah digunakan!";
-        if (password.isEmpty() || password.length() < 8 || !password.matches(".*[!@#$%^&*].*"))
-            return "Password tidak valid!";
-        if (!phoneNumber.matches("^\\+62\\d{9,}$")) return "Nomor telepon tidak valid!";
-        if (address.isEmpty()) return "Alamat tidak boleh kosong!";
-        if (!role.equals("Buyer") && !role.equals("Seller")) return "Role tidak valid!";
+        // Panggil fungsi validasi
+        String validationResult = CheckAccountValidation(username, password, phoneNumber, address, role);
+        if (validationResult != null) {
+            return validationResult; // Jika validasi gagal, kembalikan pesan error
+        }
 
         // Buat ID pengguna
         String userId = generateId();
@@ -52,7 +49,7 @@ public class UserController {
         // Query untuk menyisipkan data ke dalam tabel
         String query = String.format(
                 "INSERT INTO user (User_id, Username, Password, Phone_Number, Address, Role) " +
-                        "VALUES ('%s', '%s', '%s', '%s', '%s', '%s')",
+                "VALUES ('%s', '%s', '%s', '%s', '%s', '%s')",
                 userId, username, password, phoneNumber, address, role
         );
 
@@ -68,6 +65,30 @@ public class UserController {
             return "Terjadi kesalahan pada database!";
         }
     }
+
+    
+    public String CheckAccountValidation(String username, String password, String phoneNumber, String address, String role) {
+        if (username.isEmpty() || username.length() < 3) {
+            return "Username tidak valid!";
+        }
+        if (!isUsernameUnique(username)) {
+            return "Username sudah digunakan!";
+        }
+        if (password.isEmpty() || password.length() < 8 || !password.matches(".*[!@#$%^&*].*")) {
+            return "Password tidak valid!";
+        }
+        if (!phoneNumber.matches("^\\+62\\d{9,}$")) {
+            return "Nomor telepon tidak valid!";
+        }
+        if (address.isEmpty()) {
+            return "Alamat tidak boleh kosong!";
+        }
+        if (!role.equals("Buyer") && !role.equals("Seller")) {
+            return "Role tidak valid!";
+        }
+        return null; // Null jika semua validasi berhasil
+    }
+
 
     // Fungsi untuk login pengguna
     public boolean Login(String username, String password) {
