@@ -48,7 +48,7 @@ public class UserController {
 
         // Query untuk menyisipkan data ke dalam tabel
         String query = String.format(
-                "INSERT INTO user (User_id, Username, Password, Phone_Number, Address, Role) " +
+                "INSERT INTO user (User_id, username, password, phoneNumber, address, role) " +
                 "VALUES ('%s', '%s', '%s', '%s', '%s', '%s')",
                 userId, username, password, phoneNumber, address, role
         );
