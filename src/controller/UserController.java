@@ -1,12 +1,13 @@
 package controller;
 
-import database.DatabaseConnection;
-import model.User;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Random;
+
+import database.DatabaseConnection;
+
 
 public class UserController {
 

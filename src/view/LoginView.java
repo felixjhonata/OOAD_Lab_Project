@@ -1,7 +1,5 @@
 package view;
 
-import java.util.ArrayList;
-
 import controller.UserController;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
