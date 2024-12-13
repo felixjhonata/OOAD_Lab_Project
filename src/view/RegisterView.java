@@ -10,6 +10,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
@@ -22,7 +23,8 @@ public class RegisterView extends Application implements EventHandler<ActionEven
     private BorderPane root;
     private GridPane grid;
     private Label title, usernameLabel, passwordLabel, phoneLabel, addressLabel, roleLabel;
-    private TextField usernameField, passwordField, phoneField, addressField;
+    private PasswordField passwordField;
+    private TextField usernameField, phoneField, addressField;
     private RadioButton buyerRadio, sellerRadio;
     private ToggleGroup roleGroup;
     private Button registerButton, backButton;
@@ -39,7 +41,7 @@ public class RegisterView extends Application implements EventHandler<ActionEven
         usernameField = new TextField();
 
         passwordLabel = new Label("Password:");
-        passwordField = new TextField();
+        passwordField = new PasswordField();
 
         phoneLabel = new Label("Phone Number:");
         phoneField = new TextField();
@@ -130,7 +132,7 @@ public class RegisterView extends Application implements EventHandler<ActionEven
             RadioButton selectedRole = (RadioButton) roleGroup.getSelectedToggle();
             String role = selectedRole == null ? "" : selectedRole.getText();
 
-            String result = uc.registerUser(username, password, phone, address, role);
+            String result = uc.Register(username, password, phone, address, role);
             if (result.equals("Registrasi berhasil!")) {
                 showSuccess("Information", result);
                 clearFields();

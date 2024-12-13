@@ -120,13 +120,13 @@ public class LoginView extends Application implements EventHandler<ActionEvent> 
                 return;
             }
 
-            boolean success = uc.loginUser(username, password);
+            boolean success = uc.Login(username, password);
             if (success) {
                 showSuccess("Information", "Login Success");
-                userID = uc.getUserId(username); // Dapatkan user ID dari database
-                userRole = uc.getUserRole(username); // Dapatkan role user dari database
+//                userID = uc.getUserId(username); // Dapatkan user ID dari database
+//                userRole = uc.getUserRole(username); // Dapatkan role user dari database
                 clearFields();
-                // Redirect ke halaman berikutnya (contoh: Dashboard)
+                
             } else {
                 showAlert("Login Error", "Invalid username or password");
             }
